@@ -1,94 +1,94 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'saisudha', url: 'https://github.com/saisudhanasika/jenkins-task.git'
-            }
-        }
         stage('Build') {
             steps {
-                echo 'Building the code using Maven.'
-                // Example build command
-                // sh 'mvn clean package'
+                echo 'Performing build...'
+            }
+            post {
+                success {
+                    mail to: 'saisudhanasika5@gmail.com',
+                    subject: 'Pipeline Success',
+                    body: 'The pipeline completed successfully.'
+                }
+                failure {
+                             mail to: 'saisudhanasika5@gmail.com',
+                            subject: 'Pipeline Failure',
+                             body: 'The pipeline failed. Please check the Jenkins logs for more details.'
+                }
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit tests.'
-                // Example unit test command
-                // sh 'mvn test'
-
-                echo 'Running integration tests.'
-                // Example integration test command
-                // sh 'mvn verify'
+                echo 'Running unit and integration tests...'
+                // You can run tests using appropriate tools here
             }
             post {
                 success {
-                    emailext attachLog: true,
-                    body: 'Unit and integration tests passed.',
-                    subject: 'Test Success',
-                    to: 'saisudhanasika5@gmail.com'
+                             mail to: 'saisudhanasika5@gmail.com',
+                            subject: 'Pipeline Success',
+                             body: 'The pipeline completed successfully.'
                 }
                 failure {
-                    emailext attachLog: true,
-                    body: 'Unit and integration tests failed.',
-                    subject: 'Test Failure',
-                    to: 'saisudhanasika5@gmail.com'
+                             mail to: 'saisudhanasika@gmail.com',
+                             subject: 'Pipeline Failure',
+                             body: 'The pipeline failed. Please check the Jenkins logs for more details.'
                 }
             }
         }
         stage('Code Analysis') {
             steps {
-                echo 'Analyzing code using SonarQube.'
-                // Example code analysis command
-                // withSonarQubeEnv('SonarQube') {
-                //     sh 'mvn sonar:sonar'
-                // }
+                echo 'Performing code analysis...'
+                // Integrate a code analysis tool using Jenkins plugin
+            }
+            post {
+                success {
+                             mail to: 'saisudhanasika5@gmail.com',
+                             subject: 'Pipeline Success',
+                             body: 'The pipeline completed successfully.'
+                }
+                failure {
+                             mail to: 'saisudhanasika5@gmail.com',
+                             subject: 'Pipeline Failure',
+                             body: 'The pipeline failed. Please check the Jenkins logs for more details.'
+                }
             }
         }
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan.'
-                // Example security scan command
-                // sh 'dependency-check.sh --project myApp --scan .'
+                echo 'Performing security scan...'
+                // Perform a security scan using a specific tool, such as SonarQube or OWASP ZAP
             }
             post {
                 success {
-                    emailext attachLog: true,
-                    body: 'Security scan passed.',
-                    subject: 'Security Scan Success',
-                    to: 'saisudhanasika5@gmail.com'
+                             mail to: 'saisudhanasika5@gmail.com',
+                             subject: 'Pipeline Success',
+                             body: 'The pipeline completed successfully.'
                 }
                 failure {
-                    emailext attachLog: true,
-                    body: 'Security vulnerabilities found.',
-                    subject: 'Security Scan Failure',
-                    to: 'saisudhanasika5@gmail.com'
+                             mail to: 'saisudhanasika5@gmail.com',
+                             subject: 'Pipeline Failure',
+                             body: 'The pipeline failed. Please check the Jenkins logs for more details.'
                 }
             }
         }
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying the application to staging server.'
-                // Example deployment command
-                // sh 'aws deploy create-deployment --application-name MyApp --deployment-group-name StagingGroup --s3-location bucket=mybucket,key=myapp.zip,bundleType=zip'
+                echo 'Deploying to staging...'
+                // Deploy the application to a staging server using a specific tool, such as AWS Elastic Beanstalk or Docker
             }
         }
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests on staging environment.'
-                // Example integration test command on staging
-                // sh 'newman run tests.postman_collection.json'
+                echo 'Running integration tests on staging...'
+                // Run integration tests on the staging environment using a specific tool, such as Selenium or JMeter
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying the application to production server.'
-                // Example deployment command
-                // sh 'aws deploy create-deployment --application-name MyApp --deployment-group-name ProductionGroup --s3-location bucket=mybucket,key=myapp.zip,bundleType=zip'
+                echo 'Deploying to production...'
+                // Deploy the application to a production server using a specific tool, such as AWS Elastic Beanstalk or Docker
             }
-        }
-    }
+        }
+    }
 }
