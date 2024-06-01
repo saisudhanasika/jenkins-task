@@ -21,7 +21,8 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                // You can run tests using appropriate tools here
+                // Example command for running tests, replace with actual commands
+                // sh 'run-tests.sh'
             }
             post {
                 success {
@@ -39,7 +40,8 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Performing code analysis...'
-                // Integrate a code analysis tool using Jenkins plugin
+                // Example command for code analysis, replace with actual commands
+                // sh 'run-code-analysis.sh'
             }
             post {
                 success {
@@ -57,7 +59,8 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
-                // Perform a security scan using a specific tool, such as SonarQube or OWASP ZAP
+                // Example command for security scan, replace with actual commands
+                // sh 'run-security-scan.sh'
             }
             post {
                 success {
@@ -75,7 +78,8 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging...'
-                // Deploy the application to a staging server using a specific tool, such as AWS Elastic Beanstalk or Docker
+                // Example command for deployment, replace with actual commands
+                // sh 'deploy-to-staging.sh'
             }
             post {
                 success {
@@ -93,7 +97,8 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                // Run integration tests on the staging environment using a specific tool, such as Selenium or JMeter
+                // Example command for integration tests, replace with actual commands
+                // sh 'run-staging-tests.sh'
             }
             post {
                 success {
@@ -111,7 +116,8 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                // Deploy the application to a production server using a specific tool, such as AWS Elastic Beanstalk or Docker
+                // Example command for production deployment, replace with actual commands
+                // sh 'deploy-to-production.sh'
             }
             post {
                 success {
